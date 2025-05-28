@@ -1,33 +1,23 @@
-
 #include <bits/stdc++.h>
 using namespace std;
 
 vector<int> productExceptSelf(vector<int> &nums)
 {
-    vector<int> prePro;
     vector<int> ans;
-    vector<int> SuffPro;
-    int pref = 1;
+    int temp = 1;
     int n = nums.size();
-    prePro.push_back(pref);
+    ans.push_back(temp);
+
     for (int i = 0; i < n - 1; i++)
     {
-        pref *= nums[i];
-        prePro.push_back(pref);
+        temp *= nums[i];
+        ans.push_back(temp);
     }
-
-    int suff = 1;
-    SuffPro.push_back(suff);
+    temp = 1;
     for (int i = n - 1; i > 0; i--)
     {
-        suff *= nums[i];
-        SuffPro.push_back(suff);
-    }
-
-    reverse(SuffPro.begin(), SuffPro.end());
-    for (int i = 0; i < n; i++)
-    {
-        ans.push_back(prePro[i] * SuffPro[i]);
+        temp *= nums[i];
+        ans[i - 1] = temp * ans[i - 1];
     }
     return ans;
 }
@@ -46,7 +36,7 @@ int main()
         {
             cin >> arr[i];
         }
-        cout<<productExceptSelf(arr)<<endl;
+        cout << productExceptSelf(arr) << endl;
     }
     return 0;
 }
