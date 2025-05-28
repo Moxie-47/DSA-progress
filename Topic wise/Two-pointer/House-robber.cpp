@@ -1,23 +1,24 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void Helper(const vector<int> &nums, int i, int temp, int &ans)
+int Helper(const vector<int> &nums, int i, vector<int> &dp)
 {
     if (i >= nums.size())
     {
-        ans = max(ans, temp);
-        return;
+        return 0;
     }
-
-    Helper(nums, i + 2, temp + nums[i], ans);
-    Helper(nums, i + 1, temp, ans);
+    if (dp[i] != -1)
+        return dp[i];
+    return dp[i] = max(nums[i] + Helper(nums, i + 2, dp),
+                       Helper(nums, i + 1, dp));
 }
 
 int rob(vector<int> &nums)
 {
-    int temp = 0;
-    Helper(nums, 0, 0, temp);
-    return temp;
+    int n = nums.size();
+    vector<int> dp(n, -1);
+    Helper(nums, 0, dp);
+    return dp[0];
 }
 
 int main()
