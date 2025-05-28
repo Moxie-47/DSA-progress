@@ -36,7 +36,12 @@ int main()
         {
             cin >> arr[i];
         }
-        cout << productExceptSelf(arr) << endl;
+        vector<int> res = productExceptSelf(arr);
+        for (int num : res)
+        {
+            cout << num << " ";
+        }
+        cout << endl;
     }
     return 0;
 }
