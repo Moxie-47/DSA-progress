@@ -1,0 +1,14 @@
+# Ignore compiled and temp files across all folders
+*.exe
+*.out
+*.o
+*.log
+*.class
+*.pyc
+
+# VS Code temp file
+tempCodeRunnerFile.cpp
+
+# macOS and Windows junk
+.DS_Store
+Thumbs.db
