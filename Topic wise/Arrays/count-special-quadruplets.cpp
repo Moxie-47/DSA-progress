@@ -7,22 +7,20 @@ public:
     int countQuadruplets(vector<int> &nums)
     {
         int ans = 0;
-        // sort(nums.begin(), nums.end());
-        for (int i = 0; i < nums.size(); i++)
+        unordered_map<int, int> mp;
+        for (int i = nums.size() - 1; i >= 2; i--)
         {
-            for (int j = i + 1; j < nums.size(); j++)
+            for (int j = i - 1; j >= 1; j--)
             {
-                for (int k = j + 1; k < nums.size(); k++)
+                for (int k = j - 1; k >= 0; k--)
                 {
-                    for (int l = k + 1; l < nums.size(); l++)
+                    if (mp[nums[i] + nums[j] + nums[k]])
                     {
-                        if (nums[i] + nums[j] + nums[k] == nums[l])
-                        {
-                            ans++;
-                        }
+                        ans += mp[nums[i] + nums[j] + nums[k]];
                     }
                 }
             }
+            mp[nums[i]]++ ;
         }
         return ans;
     }
@@ -30,19 +28,19 @@ public:
 
 int main()
 {
-    int test_case = 0 ;
-    cin>>test_case ;
+    int test_case = 0;
+    cin >> test_case;
     while (test_case--)
     {
-        int n = 0 ;
-        cin>>n ;
-        vector<int>nums(n,0) ;
+        int n = 0;
+        cin >> n;
+        vector<int> nums(n, 0);
         for (int i = 0; i < n; i++)
         {
-            cin>>nums[i] ;
+            cin >> nums[i];
         }
-        Solution  s ;
-        cout<<s.countQuadruplets(nums)<<endl;
+        Solution s;
+        cout << s.countQuadruplets(nums) << endl;
     }
     return 0;
 }
