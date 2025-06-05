@@ -8,19 +8,15 @@ public:
     {
         int ans = 0;
         unordered_map<int, int> mp;
-        for (int i = nums.size() - 1; i >= 2; i--)
+        int n = nums.size() ;
+        for (int i = 1 ; i<n ; i++)
         {
-            for (int j = i - 1; j >= 1; j--)
-            {
-                for (int k = j - 1; k >= 0; k--)
-                {
-                    if (mp[nums[i] + nums[j] + nums[k]])
-                    {
-                        ans += mp[nums[i] + nums[j] + nums[k]];
-                    }
-                }
+            for(int j = 0 ; j<i ;j++){
+                mp[nums[i]+nums[j]]++ ;
             }
-            mp[nums[i]]++ ;
+            for(int k = i+2 ; k<n ; k++){
+                ans+= mp[nums[k]-nums[i+1]] ;
+            }
         }
         return ans;
     }
