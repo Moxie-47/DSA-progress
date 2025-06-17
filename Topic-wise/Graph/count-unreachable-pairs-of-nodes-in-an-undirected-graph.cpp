@@ -37,19 +37,14 @@ public:
             }
             temp.push_back(cnt);
         }
-        int tem_size = temp.size();
-        vector<int> suffix_sum(tem_size, 0);
-        int sum = 0;
-        for (int i = tem_size - 1; i > 0; i--)
-        {
-            sum += temp[i];
-            suffix_sum[i - 1] = sum;
-        }
-        
+      
+      
         // used suffix sum to calculate the product which reduces the t.c from O(n^2){when using two loops} to O(2*n)
-        for (int i = 0; i < tem_size; i++)
+        int total = 0 ;
+        for (int i = 0; i < temp.size(); i++)
         {
-            ans += (1LL * temp[i] * suffix_sum[i]);
+            ans += (long)(temp[i])*(long)(n-total-temp[i]) ;
+            total+=temp[i] ;
         }
 
         return ans;

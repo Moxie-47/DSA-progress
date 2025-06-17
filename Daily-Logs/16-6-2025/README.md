@@ -58,7 +58,7 @@
 
 
 ## 🧠 Key Takeaways
-- used the suffix sum concpet to calculate the ans instead of nested loops, reducing the T.C from `O(n^2)` to `O(n)`. 
+- used the suffix sum concpet to calculate the ans instead of nested loops, reducing the T.C from `O(n^2)` to `O(n)`. But the best one is using the running space appoarch which don't used any extra space unlike suffix sum.
 
 ## ⏱ Time Spent
 - ~12 minutes
