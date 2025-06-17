@@ -3,17 +3,24 @@ using namespace std;
 
 class Solution
 {
-    void Helper(int x, int y, vector<vector<int>> &grid, int &cnt, int dirX[], int dirY[])
+    void Helper(int x, int y, vector<vector<int>> &grid, int &cnt, vector<pair<int, int>> dir)
     {
-        cnt++;
-        grid[x][y] = -1;
-        for (int i = 0; i < 4; i++)
+        stack<pair<int, int>> st;
+        st.push({x, y});
+        while (!st.empty())
         {
-            int new_x = x + dirX[i], new_y = y + dirY[i];
-            if (new_x >= 0 && new_y >= 0 && new_x < grid.size() &&
-                new_y < grid[0].size() && grid[new_x][new_y] == 1)
+            auto [cx, cy] = st.top();
+            st.pop();
+            cnt++;
+
+            for (int i = 0; i < 4; i++)
             {
-                Helper(new_x, new_y, grid, cnt, dirX, dirY);
+                int nx = cx + dir[i].first, ny = cy + dir[i].second;
+                if (nx >= 0 && ny >= 0 && nx < grid.size() && ny < grid[0].size() && grid[nx][ny] == 1)
+                {
+                    grid[nx][ny] = -1;
+                    st.push({nx, ny});
+                }
             }
         }
     }
@@ -23,8 +30,7 @@ public:
     {
         int n = grid.size(), m = grid[0].size();
         int ans = 0;
-        int dirX[] = {1, 0, -1, 0};
-        int dirY[] = {0, -1, 0, 1};
+        vector<pair<int, int>> dir = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
         for (int i = 0; i < n; i++)
         {
             for (int j = 0; j < m; j++)
@@ -32,7 +38,8 @@ public:
                 int cnt = 0;
                 if (grid[i][j] == 1)
                 {
-                    Helper(i, j, grid, cnt, dirX, dirY);
+                    grid[i][j] = -1;
+                    Helper(i, j, grid, cnt, dir);
                     ans = max(ans, cnt);
                 }
             }
