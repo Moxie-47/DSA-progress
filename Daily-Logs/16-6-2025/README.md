@@ -28,3 +28,16 @@
 
 ## ⏱ Time Spent
 - ~14 minutes
+
+### - [Max num of fish](../../Topic-wise/Graph/Max-num-of-fish.cpp)
+- **Approach**: Used **DFS** with a recursion.
+- **Learning**: Same as of Max area of Island.
+- **Complexity**:
+  - **Time**: O(n * m), where `n = rows` and `m = columns`
+  - **Space**: O(n * m)
+
+## 🧠 Key Takeaways
+- Questions changes but the core concept remain same
+
+## ⏱ Time Spent
+- ~5 minutes
