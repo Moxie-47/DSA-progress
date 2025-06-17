@@ -5,6 +5,7 @@
 *.log
 *.class
 *.pyc
+*.json
 
 # VS Code temp file
 tempCodeRunnerFile.cpp
